@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construir</title>
+</head>
+<body>
+    <input type="text" id="input">
+    <button id="button">Convertir</button>
+    <hr>
+    <p id="resultado"></p>
+    <script>
+        const input = document.querySelector('#input')
+        const button = document.querySelector('#button')
+        const resultado = document.querySelector('#resultado')
+
+        button.addEventListener('click', () => {
+            let texto = input.value.toLowerCase().trim()
+            let texto_resultado = texto
+                        .replace(/[^a-zA-Z 0-9áéíóú]/g, "")
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "")
+                        .replace(/\\s{2,}/, " ")
+                        .replaceAll(" ", "-")
+            console.log({ texto, resultado })
+            resultado.innerText = texto_resultado
+        })
+    </script>
+</body>
+</html>
